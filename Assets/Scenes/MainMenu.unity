@@ -1622,6 +1622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CreateInput: {fileID: 955384832}
   JoinInput: {fileID: 117630683}
+  LevelToLoad: TeamSelect
 --- !u!4 &1342848805
 Transform:
   m_ObjectHideFlags: 0

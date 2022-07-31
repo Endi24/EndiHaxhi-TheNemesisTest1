@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     public TMP_InputField CreateInput;
     public TMP_InputField JoinInput;
 
+    public string LevelToLoad;
     public void CreateRoom()
     {
         //RoomOptions define things like whether is public, or how many players
@@ -38,7 +39,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     {
         //Load the level once joined, use PhotonNetwork not SceneManager,
         //since this is a shared level
-        PhotonNetwork.LoadLevel("Game");
+        PhotonNetwork.LoadLevel(LevelToLoad);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
