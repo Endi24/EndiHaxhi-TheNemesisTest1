@@ -49,7 +49,7 @@ public class GuestTeamPicker : MonoBehaviour
     {   
         //could update game controller here?
         GameController.Instance.Player2Choice.Team = PlayerSelection.TeamSelection.TeamA;
-        Debug.Log("Team when moved p2 left: " + GameController.Instance.Player2Choice.Team);
+        //Debug.Log("Team when moved p2 left: " + GameController.Instance.Player2Choice.Team);
 
         GuestSprite.anchoredPosition = GuestChoicePositions[0].anchoredPosition;
         RightButton.gameObject.SetActive(true);
@@ -72,7 +72,7 @@ public class GuestTeamPicker : MonoBehaviour
     {
         //could update game controller here?
         GameController.Instance.Player2Choice.Team = PlayerSelection.TeamSelection.TeamB;
-        Debug.Log("Team when moved p2 right: " + GameController.Instance.Player2Choice.Team);
+        //Debug.Log("Team when moved p2 right: " + GameController.Instance.Player2Choice.Team);
 
         GuestSprite.anchoredPosition = GuestChoicePositions[1].anchoredPosition;
         RightButton.gameObject.SetActive(false);
@@ -108,5 +108,11 @@ public class GuestTeamPicker : MonoBehaviour
                 RightButton.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void DisableButtonsAfterConfirmation()
+    {
+        LeftButton.gameObject.SetActive(false);
+        RightButton.gameObject.SetActive(false);
     }
 }

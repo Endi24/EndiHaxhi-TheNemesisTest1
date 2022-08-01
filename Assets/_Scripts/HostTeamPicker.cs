@@ -40,6 +40,7 @@ public class HostTeamPicker : MonoBehaviour
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
+            //Debug.Log("Guest Joined!");
             WaitingForGuest.gameObject.SetActive(false);
         }
     }
@@ -59,7 +60,7 @@ public class HostTeamPicker : MonoBehaviour
     {
         //could update game controller here?
         GameController.Instance.Player1Choice.Team = PlayerSelection.TeamSelection.TeamA;
-        Debug.Log("Team when moved p1 left: " + GameController.Instance.Player1Choice.Team);
+        //Debug.Log("Team when moved p1 left: " + GameController.Instance.Player1Choice.Team);
 
         //Change the position of the Sprite
         HostSprite.anchoredPosition = HostChoicePositions[0].anchoredPosition;
@@ -83,7 +84,7 @@ public class HostTeamPicker : MonoBehaviour
     {
         //could update game controller here?
         GameController.Instance.Player1Choice.Team = PlayerSelection.TeamSelection.TeamB;
-        Debug.Log("Team when moved p1 right: " + GameController.Instance.Player1Choice.Team);
+        //Debug.Log("Team when moved p1 right: " + GameController.Instance.Player1Choice.Team);
 
         //Change the position of the Sprite
         HostSprite.anchoredPosition = HostChoicePositions[1].anchoredPosition;
@@ -120,5 +121,10 @@ public class HostTeamPicker : MonoBehaviour
                 RightButton.gameObject.SetActive(false);
             }
         }
+    }
+    public void DisableButtonsAfterConfirmation()
+    {
+        LeftButton.gameObject.SetActive(false);
+        RightButton.gameObject.SetActive(false);
     }
 }
