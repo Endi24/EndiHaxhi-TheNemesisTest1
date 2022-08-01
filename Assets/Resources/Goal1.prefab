@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6918173887761788999}
   - component: {fileID: 2806843832645153231}
   - component: {fileID: -6869726447972780549}
+  - component: {fileID: -2189756910368261953}
   m_Layer: 0
   m_Name: Goal1
   m_TagString: Untagged
@@ -135,3 +136,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerString: Player2
+--- !u!114 &-2189756910368261953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235588443845981960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fbd1004e001224aaf3269cc581304a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

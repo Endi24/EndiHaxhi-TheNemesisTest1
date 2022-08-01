@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1990522579530429363}
   - component: {fileID: 5404944844377130944}
   - component: {fileID: 3082098461424875547}
+  - component: {fileID: 3897577561653207002}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -171,3 +172,15 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &3897577561653207002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990522579530429374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fbd1004e001224aaf3269cc581304a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

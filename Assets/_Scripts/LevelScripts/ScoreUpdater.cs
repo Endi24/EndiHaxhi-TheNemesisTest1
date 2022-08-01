@@ -12,10 +12,12 @@ public class ScoreUpdater : MonoBehaviour
     private int p2Score = 0;
 
     private GameOver gameOver;
+    private PointScoredHandler pointScoredHandler;
 
     private void Start()
     {
         gameOver = FindObjectOfType<GameOver>();
+        pointScoredHandler = FindObjectOfType<PointScoredHandler>();
     }
     public void UpdateP1Score()
     {
@@ -26,6 +28,7 @@ public class ScoreUpdater : MonoBehaviour
         {
             gameOver.ShowGameOverScreen();
         }
+        pointScoredHandler.DestroyRelevantObjects();
     }
 
     public void UpdateP2Score()
@@ -38,5 +41,6 @@ public class ScoreUpdater : MonoBehaviour
         {
             gameOver.ShowGameOverScreen();
         }
+        pointScoredHandler.DestroyRelevantObjects();
     }
 }
