@@ -15,7 +15,9 @@ public class GameController : GenericSingletonClass<GameController>
         Player2Choice = new PlayerSelection();
 
         Player1Choice.Team = PlayerSelection.TeamSelection.Unselected;
+        Player1Choice.PlayerPoints = 0;
         Player2Choice.Team = PlayerSelection.TeamSelection.Unselected;
+        Player2Choice.PlayerPoints = 0;
     }
 }
 
@@ -23,6 +25,7 @@ public class PlayerSelection
 {
     public TeamSelection Team;
     public string CharacterName;
+    public int PlayerPoints;
 
     public enum TeamSelection
     {
