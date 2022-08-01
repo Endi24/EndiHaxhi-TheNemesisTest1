@@ -3717,6 +3717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476dbbb207609de4fb935172e07e67d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelToLoadName: InGame3D
   LogText: {fileID: 1834651757}
   HostConfirmButton: {fileID: 966375104}
   GuestConfirmButton: {fileID: 681987010}

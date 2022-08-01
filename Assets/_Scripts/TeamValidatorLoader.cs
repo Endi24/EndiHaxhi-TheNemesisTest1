@@ -7,6 +7,7 @@ using TMPro;
 
 public class TeamValidatorLoader : MonoBehaviour
 {
+    public string LevelToLoadName;
     public TextMeshProUGUI LogText;
 
     public Button HostConfirmButton;
@@ -158,6 +159,6 @@ public class TeamValidatorLoader : MonoBehaviour
     void LoadGameRPC()
     {
         LogText.text = "Load the game!";
-        PhotonNetwork.LoadLevel("InGame2D");
+        PhotonNetwork.LoadLevel(LevelToLoadName);
     }
 }
