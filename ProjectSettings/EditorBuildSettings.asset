@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TeamSelect.unity
     guid: 33d3bb35d8c43bb4faad42d08649aeb8
+  - enabled: 1
+    path: Assets/Scenes/InGame2D.unity
+    guid: a6691f9852da219429c40d2c720186c7
   m_configObjects: {}

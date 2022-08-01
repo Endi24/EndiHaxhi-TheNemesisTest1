@@ -20,7 +20,10 @@ public class MainMenu : MonoBehaviourPunCallbacks
         roomOptions.MaxPlayers = 2; //we only support 2 players in this experience
 
         //Creates a room with the options above, and the name of the input field
-        PhotonNetwork.CreateRoom(CreateInput.text, roomOptions);
+        if (CreateInput.text != "")
+        {
+            PhotonNetwork.CreateRoom(CreateInput.text, roomOptions);
+        }
     }
 
     public void JoinRandomRoom()
