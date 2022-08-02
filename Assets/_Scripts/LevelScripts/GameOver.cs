@@ -58,9 +58,8 @@ public class GameOver : MonoBehaviour
                 EndGameMessage.text = "You Win!!!";
             }
         }
-        //show game over ui
-        //show who won and who lost
-        //show restart buttons or a timer
+
+        redirectToTeamSelect();
     }
 
     public void DetermineWinner(bool anyDisconnects)
@@ -94,6 +93,29 @@ public class GameOver : MonoBehaviour
     public void PlayerLeftGame()
     {
 
+    }
+
+    void redirectToTeamSelect()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Invoke("redirectGame", 1.5f);
+        }
+    }
+
+    void redirectGame()
+    {
+        view.RPC("redirectGameRPC", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void redirectGameRPC()
+    {
+        //reset the score too in GameController
+        GameController.Instance.Player1Choice.PlayerPoints = 0;
+        GameController.Instance.Player2Choice.PlayerPoints = 0;
+
+        PhotonNetwork.LoadLevel("TeamSelect");
     }
 
 }
