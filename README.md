@@ -13,3 +13,4 @@ Don't forget to checkout main before you open the project with Unity!
 If the error somehow still occurs, email me.
 
 Link to builds, a zipped version of the project, and some UI assets that I made:
+https://1drv.ms/u/s!Au2iaJOjWiNehsR0lW_9ic1wS2qTSg?e=p4xJ7d
