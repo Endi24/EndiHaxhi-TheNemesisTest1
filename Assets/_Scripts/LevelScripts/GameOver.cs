@@ -4,8 +4,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
+public class GameOver : MonoBehaviourPunCallbacks
 {
     public enum WinningPlayer
     {
@@ -17,6 +19,10 @@ public class GameOver : MonoBehaviour
 
     public GameObject GameOverUI;
     public TextMeshProUGUI EndGameMessage;
+
+    public GameObject DisconnectUI;
+    public TextMeshProUGUI DisconnectMessage;
+
     public bool AnyoneDisconnected;
 
     private void Start()
@@ -32,7 +38,7 @@ public class GameOver : MonoBehaviour
     [PunRPC]
     void ShowGameOverScreenRPC()
     {
-        DetermineWinner(AnyoneDisconnected);
+        DetermineWinnerScore();
         GameOverUI.SetActive(true);
 
         if (winningPlayer == WinningPlayer.Player1Host)
@@ -62,37 +68,56 @@ public class GameOver : MonoBehaviour
         redirectToTeamSelect();
     }
 
-    public void DetermineWinner(bool anyDisconnects)
+    public void DetermineWinnerScore()
     {
-        if (anyDisconnects == false)
+
+        int p1Score = GameController.Instance.Player1Choice.PlayerPoints;
+        int p2Score = GameController.Instance.Player2Choice.PlayerPoints;
+
+        if (p1Score == 3 || p2Score == 3)
         {
-            int p1Score = GameController.Instance.Player1Choice.PlayerPoints;
-            int p2Score = GameController.Instance.Player2Choice.PlayerPoints;
+            Debug.Log("Any has a score of 3!");
 
-            if (p1Score == 3 || p2Score == 3)
+            if (p1Score > p2Score)
             {
-                Debug.Log("Any has a score of 3!");
-
-                if (p1Score > p2Score)
-                {
-                    winningPlayer = WinningPlayer.Player1Host;
-                }
-                else if(p1Score < p2Score)
-                {
-                    winningPlayer = WinningPlayer.Player2Guest;
-                }
+                winningPlayer = WinningPlayer.Player1Host;
             }
-            else
+            else if(p1Score < p2Score)
             {
-                Debug.Log("Nobody has a score of 3. Possible disconnect?");
+                winningPlayer = WinningPlayer.Player2Guest;
             }
-
         }
+        else
+        {
+            Debug.Log("Nobody has a score of 3. Possible disconnect?");
+        }
+
+        
     }
 
-    public void PlayerLeftGame()
+    public void DisconnectPlayer()
     {
+        StartCoroutine(DisconnectMe());
+    }
 
+    IEnumerator DisconnectMe()
+    {
+        PhotonNetwork.LeaveRoom();
+        while(PhotonNetwork.InRoom)
+            yield return null;
+        SceneManager.LoadScene("ConnectToMaster");
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        Debug.Log($"Player {otherPlayer.NickName} disconnected");
+        DisconnectUI.SetActive(true);
+        DisconnectMessage.text = $"{otherPlayer.NickName} disconnected, so You WIN!";
+    }
+
+    public void GoToMatchMakingButton()
+    {
+        SceneManager.LoadScene("ConnectToMaster");
     }
 
     void redirectToTeamSelect()
