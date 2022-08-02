@@ -105,6 +105,13 @@ public class GameOver : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
         while(PhotonNetwork.InRoom)
             yield return null;
+
+        //reset the score too in GameController
+        GameController.Instance.Player1Choice.PlayerPoints = 0;
+        GameController.Instance.Player2Choice.PlayerPoints = 0;
+
+        PhotonNetwork.LocalPlayer.CustomProperties.Remove("TeamImage1");
+        PhotonNetwork.LocalPlayer.CustomProperties.Remove("TeamImage2");
         SceneManager.LoadScene("ConnectToMaster");
     }
 
@@ -136,6 +143,9 @@ public class GameOver : MonoBehaviourPunCallbacks
     [PunRPC]
     void redirectGameRPC()
     {
+        PhotonNetwork.LocalPlayer.CustomProperties.Remove("TeamImage1");
+        PhotonNetwork.LocalPlayer.CustomProperties.Remove("TeamImage2");
+
         //reset the score too in GameController
         GameController.Instance.Player1Choice.PlayerPoints = 0;
         GameController.Instance.Player2Choice.PlayerPoints = 0;

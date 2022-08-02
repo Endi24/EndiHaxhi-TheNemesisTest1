@@ -50,6 +50,7 @@ public class HostTeamPicker : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             playerCustomProps["TeamChoice1"] = "TeamA";
+            playerCustomProps["TeamImage1"] = "Panda";
             view.RPC("moveLeftRPC", RpcTarget.All);
         }
         
@@ -74,6 +75,7 @@ public class HostTeamPicker : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             playerCustomProps["TeamChoice1"] = "TeamB";
+            playerCustomProps["TeamImage1"] = "Hippo";
             view.RPC("moveRightRPC", RpcTarget.All);
         }
         

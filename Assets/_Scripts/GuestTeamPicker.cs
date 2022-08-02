@@ -40,6 +40,7 @@ public class GuestTeamPicker : MonoBehaviour
         {
 
             playerCustomProps["TeamChoice2"] = "TeamA";
+            playerCustomProps["TeamImage2"] = "Panda";
             view.RPC("moveLeftRPC", RpcTarget.All);
         }
     }
@@ -63,6 +64,7 @@ public class GuestTeamPicker : MonoBehaviour
         {
 
             playerCustomProps["TeamChoice2"] = "TeamB";
+            playerCustomProps["TeamImage2"] = "Hippo";
             view.RPC("moveRightRPC", RpcTarget.All);
         }
     }
