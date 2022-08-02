@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 
-public class ConnectToServer : MonoBehaviourPunCallbacks
+public class ConnectToServer : MonoBehaviourPunCallbacks //we need to derive from MonoBehaviourPunCallbacks, since we need access to OnConnectedToMaster
 {
     void Start()
     {
@@ -12,6 +12,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();       
     }
 
+    //Callback that occurs when we connect to master server, which we did above.
     public override void OnConnectedToMaster()
     {
         Debug.Log("Successfully connected to PUN MasterServer");

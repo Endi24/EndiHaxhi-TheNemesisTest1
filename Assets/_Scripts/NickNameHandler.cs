@@ -7,6 +7,7 @@ public class NickNameHandler : MonoBehaviour
 {
     public TMPro.TMP_InputField nameInput;
 
+    //here we set the photon nickname to whatever we inputed in the input field
     public void ChangeName()
     {
         PhotonNetwork.NickName = nameInput.text;

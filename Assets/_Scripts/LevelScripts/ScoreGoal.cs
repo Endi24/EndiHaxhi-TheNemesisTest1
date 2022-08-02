@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ScoreGoal : MonoBehaviour
 {
+    //the goal for the specific player, inserted in the inspector
     public string PlayerString;
-    private ScoreUpdater scoreUpdater;
+    private ScoreUpdater scoreUpdater; //referenco to score updator, which will handle the updating
 
     private void Start()
     {
@@ -13,6 +14,7 @@ public class ScoreGoal : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        //if the ball enters, check if it was a score for player1/host or player2/guest
         if (other.CompareTag("Ball"))
         {
             Debug.Log($"{PlayerString} scored at goal: {this.gameObject.name}");

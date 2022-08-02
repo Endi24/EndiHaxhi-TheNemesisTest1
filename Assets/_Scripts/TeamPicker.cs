@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
+//Not used. Left because I was referencing this when I built HostTeamPicker and GuestTeamPicker
 public class TeamPicker : MonoBehaviour
 {
     public enum PlayerNumber

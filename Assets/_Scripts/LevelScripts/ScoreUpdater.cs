@@ -7,36 +7,39 @@ using TMPro;
 
 public class ScoreUpdater : MonoBehaviour
 {
-    public Slider Player1ScoreSlider;
-    public Slider Player2ScoreSlider;
+    public Slider Player1ScoreSlider; //visual representation of the score for host
+    public Slider Player2ScoreSlider; //visual representation of the score for guest
 
-    public GameObject PlayerScoredPanel;
-    public TextMeshProUGUI PlayerScoredText;
+    public GameObject PlayerScoredPanel; //ui that shows when player scores
+    public TextMeshProUGUI PlayerScoredText; //text for the same thing
 
     private GameOver gameOver;
     private PhotonView view;
     private void Start()
     {
         view = GetComponent<PhotonView>();
-        Player1ScoreSlider.value = GameController.Instance.Player1Choice.PlayerPoints;
+        Player1ScoreSlider.value = GameController.Instance.Player1Choice.PlayerPoints; //update the sliders with the score from GameController
         Player2ScoreSlider.value = GameController.Instance.Player2Choice.PlayerPoints;
         gameOver = FindObjectOfType<GameOver>();
     }
     public void UpdateP1Score()
     {
-        //p1Score++;
-        GameController.Instance.Player1Choice.PlayerPoints++; // = p1Score;
-        Player1ScoreSlider.value = (int)GameController.Instance.Player1Choice.PlayerPoints;
+        //update the score for p1/host in the Game Controller
+        GameController.Instance.Player1Choice.PlayerPoints++; 
+        Player1ScoreSlider.value = (int)GameController.Instance.Player1Choice.PlayerPoints; //update the slider
+
+        //check if 3 have been scored, then call show game over screen
         if (GameController.Instance.Player1Choice.PlayerPoints == 3)
         {
             gameOver.ShowGameOverScreen();
         }
         else
         {
-            pointScored(true);
+            pointScored(true); //else, just update the score
         }
     }
 
+    //same thing as above but for guest
     public void UpdateP2Score()
     {
         //p2Score++;
@@ -53,11 +56,14 @@ public class ScoreUpdater : MonoBehaviour
         }
     }
 
+    //if a point was scored 
     private void pointScored(bool wasHost)
     {
-        PlayerScoredPanel.SetActive(true);
-        if (wasHost)
+        //activate the score panel
+        PlayerScoredPanel.SetActive(true); 
+        if (wasHost) //was it host?
         {
+            //update the text for each player
             if (PhotonNetwork.IsMasterClient)
             {                
                 PlayerScoredText.text = "You Scored! Yay!";
@@ -67,8 +73,9 @@ public class ScoreUpdater : MonoBehaviour
                 PlayerScoredText.text = "Enemy Scored! Defend Better!";
             }
         }
-        else if (!wasHost)
+        else if (!wasHost) //if it was guest
         {
+            //update the text as needed
             if (!PhotonNetwork.IsMasterClient)
             {
                 PlayerScoredText.text = "You Scored! Yay!";
@@ -79,19 +86,21 @@ public class ScoreUpdater : MonoBehaviour
             }
         }
 
+        //we only need to call load game again on the master client/host
         if (PhotonNetwork.IsMasterClient)
         {
-            Invoke("LoadGameAgain", 1.5f);
+            Invoke("LoadGameAgain", 1.5f); //loads the same level with a 1.5second delay
         }
     }
     void LoadGameAgain()
     {
+        //calls the rpc function for both players
         view.RPC("LoadGameAgainRPC", RpcTarget.All);
     }
 
     [PunRPC]
     void LoadGameAgainRPC()
     {
-        PhotonNetwork.LoadLevel("InGame3D");
+        PhotonNetwork.LoadLevel("InGame3D"); //simply reloads the level
     }
 }
